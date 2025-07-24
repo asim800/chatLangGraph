@@ -1,0 +1,22 @@
+{
+  "user_id": "demo_user",
+  "session_id": "7f931a99-0dbf-48f9-bde4-79f5c645e31a",
+  "messages": [
+    {
+      "role": "user",
+      "content": "please evaluate my portfolio risk",
+      "timestamp": "2025-07-21T22:07:18.473823",
+      "message_id": "8439fc5c-6b70-45cc-b0c7-5ca909dd93b4"
+    },
+    {
+      "role": "assistant",
+      "content": "Thanks for reaching out. To evaluate your portfolio risk, we can follow these steps:\n\n1. Gather information about your portfolio holdings.\n2. Calculate the risk score for your portfolio.\n\nLet's start by gathering information about your portfolio holdings. Could you provide a list of the assets or stocks you currently hold in your portfolio?",
+      "timestamp": "2025-07-21T22:07:19.485950",
+      "message_id": "e07c6cfa-dc47-40b8-969c-74adde538036"
+    }
+  ],
+  "context": {},
+  "last_engagement_score": 1.0,
+  "last_updated": "2025-07-21T22:07:19.486509",
+  "message_count": 2
+}

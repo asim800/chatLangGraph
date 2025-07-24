@@ -1,0 +1,55 @@
+{
+  "user_id": "default_user",
+  "session_id": "d765afa8-b237-44b8-ac43-04c6609809f2",
+  "messages": [
+    {
+      "role": "user",
+      "content": "hello",
+      "timestamp": "2025-07-16T05:51:01.267356",
+      "message_id": "fbd15ce9-352f-409c-9b98-bcea8ec1a483"
+    },
+    {
+      "role": "assistant",
+      "content": "Hello! How are you doing today?",
+      "timestamp": "2025-07-16T05:51:02.345393",
+      "message_id": "e987bcff-bfbf-4710-a521-758aefebfe28"
+    },
+    {
+      "role": "user",
+      "content": "who are you",
+      "timestamp": "2025-07-16T05:54:44.642133",
+      "message_id": "4bb6e7ed-19cc-497f-9f03-f9db8fa134f6"
+    },
+    {
+      "role": "assistant",
+      "content": "I'm an AI assistant here to chat with you and help however I can. Is there anything specific you'd like to talk about or ask?",
+      "timestamp": "2025-07-16T05:54:45.669745",
+      "message_id": "0a46703f-b148-42f2-96a6-e201b0664cdc"
+    }
+  ],
+  "engagement_score": 1.0,
+  "context": {
+    "recent_history": [
+      {
+        "role": "user",
+        "content": "hello",
+        "timestamp": "2025-07-16T05:51:01.267356",
+        "message_id": "fbd15ce9-352f-409c-9b98-bcea8ec1a483"
+      },
+      {
+        "role": "assistant",
+        "content": "Hello! How are you doing today?",
+        "timestamp": "2025-07-16T05:51:02.345393",
+        "message_id": "e987bcff-bfbf-4710-a521-758aefebfe28"
+      },
+      {
+        "role": "user",
+        "content": "who are you",
+        "timestamp": "2025-07-16T05:54:44.642133",
+        "message_id": "4bb6e7ed-19cc-497f-9f03-f9db8fa134f6"
+      }
+    ]
+  },
+  "timestamp": "2025-07-16T05:54:45.670940",
+  "interaction_id": "6dacd3e9-d545-4f6a-bb01-27994847a0aa"
+}

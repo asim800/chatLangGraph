@@ -1,0 +1,79 @@
+{
+  "user_id": "default_user",
+  "session_id": "d765afa8-b237-44b8-ac43-04c6609809f2",
+  "messages": [
+    {
+      "role": "user",
+      "content": "hello",
+      "timestamp": "2025-07-16T05:51:01.267356",
+      "message_id": "fbd15ce9-352f-409c-9b98-bcea8ec1a483"
+    },
+    {
+      "role": "assistant",
+      "content": "Hello! How are you doing today?",
+      "timestamp": "2025-07-16T05:51:02.345393",
+      "message_id": "e987bcff-bfbf-4710-a521-758aefebfe28"
+    },
+    {
+      "role": "user",
+      "content": "who are you",
+      "timestamp": "2025-07-16T05:54:44.642133",
+      "message_id": "4bb6e7ed-19cc-497f-9f03-f9db8fa134f6"
+    },
+    {
+      "role": "assistant",
+      "content": "I'm an AI assistant here to chat with you and help however I can. Is there anything specific you'd like to talk about or ask?",
+      "timestamp": "2025-07-16T05:54:45.669745",
+      "message_id": "0a46703f-b148-42f2-96a6-e201b0664cdc"
+    },
+    {
+      "role": "user",
+      "content": "am I talking to chatgpt",
+      "timestamp": "2025-07-16T05:55:06.025939",
+      "message_id": "d50a46d1-cfbe-4e66-9d62-97fe23563f58"
+    },
+    {
+      "role": "assistant",
+      "content": "Yes, you are! You're chatting with me, an AI assistant powered by ChatGPT. How can I assist you today?",
+      "timestamp": "2025-07-16T05:55:06.832293",
+      "message_id": "3f2e348d-87d3-4406-bb54-b5f66587428b"
+    }
+  ],
+  "engagement_score": 1.0,
+  "context": {
+    "recent_history": [
+      {
+        "role": "user",
+        "content": "hello",
+        "timestamp": "2025-07-16T05:51:01.267356",
+        "message_id": "fbd15ce9-352f-409c-9b98-bcea8ec1a483"
+      },
+      {
+        "role": "assistant",
+        "content": "Hello! How are you doing today?",
+        "timestamp": "2025-07-16T05:51:02.345393",
+        "message_id": "e987bcff-bfbf-4710-a521-758aefebfe28"
+      },
+      {
+        "role": "user",
+        "content": "who are you",
+        "timestamp": "2025-07-16T05:54:44.642133",
+        "message_id": "4bb6e7ed-19cc-497f-9f03-f9db8fa134f6"
+      },
+      {
+        "role": "assistant",
+        "content": "I'm an AI assistant here to chat with you and help however I can. Is there anything specific you'd like to talk about or ask?",
+        "timestamp": "2025-07-16T05:54:45.669745",
+        "message_id": "0a46703f-b148-42f2-96a6-e201b0664cdc"
+      },
+      {
+        "role": "user",
+        "content": "am I talking to chatgpt",
+        "timestamp": "2025-07-16T05:55:06.025939",
+        "message_id": "d50a46d1-cfbe-4e66-9d62-97fe23563f58"
+      }
+    ]
+  },
+  "timestamp": "2025-07-16T05:55:06.832802",
+  "interaction_id": "c9fbaa6f-fc27-4b0f-a794-fa48a547e474"
+}

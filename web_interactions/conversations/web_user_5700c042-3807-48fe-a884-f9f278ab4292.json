@@ -1,0 +1,349 @@
+{
+  "user_id": "web_user",
+  "session_id": "5700c042-3807-48fe-a884-f9f278ab4292",
+  "messages": [
+    {
+      "role": "user",
+      "content": "i have SPY and MSFT stocks. Help me evaluate risk of my portfolio",
+      "timestamp": "2025-07-23T18:38:42.707436",
+      "message_id": "df9f734d-9c24-4c24-80ac-351ef9475f4b"
+    },
+    {
+      "role": "assistant",
+      "content": "Understood. To evaluate the risk of your portfolio with SPY and MSFT stocks, we can follow these steps:\n1. Get the risk assessment for each stock individually.\n2. Analyze the risk of the portfolio as a whole.\n\nLet's start by getting the risk assessment for SPY and MSFT stocks individually. I will use the `get_stock_info` tool to gather this information. Let's proceed with that.",
+      "timestamp": "2025-07-23T18:38:45.819053",
+      "message_id": "cff3db1a-a0fe-48f1-8b86-51f4e3e89180",
+      "tool_calls": [
+        {
+          "name": "get_stock_info",
+          "args": {
+            "symbol": "SPY"
+          },
+          "id": "call_ynU5jEtiwgHou1dXIfn0vOrC",
+          "type": "tool_call"
+        },
+        {
+          "name": "get_stock_info",
+          "args": {
+            "symbol": "MSFT"
+          },
+          "id": "call_5gQbz3FvWwhIYMJJGJDVUDhX",
+          "type": "tool_call"
+        }
+      ]
+    },
+    {
+      "role": "assistant",
+      "content": "I encountered an error while using tools: No AIMessage found in input",
+      "timestamp": "2025-07-23T18:38:45.819461",
+      "message_id": "995f3e31-bf62-4201-a442-2535fc45ec47"
+    },
+    {
+      "role": "assistant",
+      "content": "",
+      "timestamp": "2025-07-23T18:38:46.538606",
+      "message_id": "8a906ffb-646a-49d8-b14c-4392f299d313",
+      "tool_calls": [
+        {
+          "name": "get_stock_info",
+          "args": {
+            "symbol": "SPY"
+          },
+          "id": "call_YGiVFqUAiexUWlCLGDZK5P83",
+          "type": "tool_call"
+        },
+        {
+          "name": "get_stock_info",
+          "args": {
+            "symbol": "MSFT"
+          },
+          "id": "call_sQKrwXww82VHtYRuXUcDvR5w",
+          "type": "tool_call"
+        }
+      ]
+    },
+    {
+      "role": "assistant",
+      "content": "I encountered an error while using tools: No AIMessage found in input",
+      "timestamp": "2025-07-23T18:38:46.539482",
+      "message_id": "b3493a56-2197-4866-91fd-51128e321990"
+    },
+    {
+      "role": "assistant",
+      "content": "",
+      "timestamp": "2025-07-23T18:38:47.171205",
+      "message_id": "1c70ae54-01af-44f2-85ac-ea133eac6b73",
+      "tool_calls": [
+        {
+          "name": "get_stock_info",
+          "args": {
+            "symbol": "SPY"
+          },
+          "id": "call_jmYZIExfEs1SK8gGvxDoGXLC",
+          "type": "tool_call"
+        }
+      ]
+    },
+    {
+      "role": "assistant",
+      "content": "I encountered an error while using tools: No AIMessage found in input",
+      "timestamp": "2025-07-23T18:38:47.172477",
+      "message_id": "28be5da6-6b96-49c1-b714-5298e4685d36"
+    },
+    {
+      "role": "assistant",
+      "content": "",
+      "timestamp": "2025-07-23T18:38:47.765818",
+      "message_id": "ffd364a5-ab1a-4523-89b4-01c5708cffbb",
+      "tool_calls": [
+        {
+          "name": "get_stock_info",
+          "args": {
+            "symbol": "SPY"
+          },
+          "id": "call_cIPe4WmtVgLStyiu2dbNxcSW",
+          "type": "tool_call"
+        }
+      ]
+    },
+    {
+      "role": "assistant",
+      "content": "I encountered an error while using tools: No AIMessage found in input",
+      "timestamp": "2025-07-23T18:38:47.767200",
+      "message_id": "b76f5bbe-927e-49ae-9d34-378db4c577ea"
+    },
+    {
+      "role": "assistant",
+      "content": "Let's analyze the risk of your portfolio as a whole using the `calculate_risk` tool. I will combine the risk assessment of SPY and MSFT to provide an overall risk evaluation. Let's proceed with that.",
+      "timestamp": "2025-07-23T18:38:49.073499",
+      "message_id": "a190f04c-6902-49ca-a5b3-ea5120234be7",
+      "tool_calls": [
+        {
+          "name": "get_stock_info",
+          "args": {
+            "symbol": "SPY"
+          },
+          "id": "call_8kdwZ4xDVFYmRSTjeDJBOD1b",
+          "type": "tool_call"
+        },
+        {
+          "name": "get_stock_info",
+          "args": {
+            "symbol": "MSFT"
+          },
+          "id": "call_sWh4sZjFNHRrm3W3K3txapQs",
+          "type": "tool_call"
+        }
+      ]
+    },
+    {
+      "role": "assistant",
+      "content": "I encountered an error while using tools: No AIMessage found in input",
+      "timestamp": "2025-07-23T18:38:49.074885",
+      "message_id": "89254e5d-c3c0-49f5-a174-728dd0c8c934"
+    },
+    {
+      "role": "assistant",
+      "content": "I encountered an error while using tools: No AIMessage found in input",
+      "timestamp": "2025-07-23T18:38:49.576324",
+      "message_id": "b3d1bb14-e89e-4409-95c8-609c81b6ef43"
+    },
+    {
+      "role": "user",
+      "content": "i have SPY and MSFT stocks. Help me evaluate risk of my portfolio",
+      "timestamp": "2025-07-23T18:38:53.065611",
+      "message_id": "a49ef0e0-a4a4-4304-bc2a-312bd0dffc83"
+    },
+    {
+      "role": "assistant",
+      "content": "Understood. To evaluate the risk of your portfolio with SPY and MSFT stocks, we can follow these steps:\n1. Get the risk assessment for each stock individually.\n2. Analyze the risk of the portfolio as a whole.\n\nLet's start by getting the risk assessment for SPY and MSFT stocks individually. I will use the `get_stock_info` tool to gather this information. Let's proceed with that.",
+      "timestamp": "2025-07-23T18:38:54.562746",
+      "message_id": "c2df3797-a2ce-4027-97ca-1d518282bf44",
+      "tool_calls": [
+        {
+          "name": "get_stock_info",
+          "args": {
+            "symbol": "SPY"
+          },
+          "id": "call_BIjRTM8EUVS3uMiZit46P6I9",
+          "type": "tool_call"
+        },
+        {
+          "name": "get_stock_info",
+          "args": {
+            "symbol": "MSFT"
+          },
+          "id": "call_2wZGxiGVuY61VVdtlTMJJDQi",
+          "type": "tool_call"
+        }
+      ]
+    },
+    {
+      "role": "assistant",
+      "content": "I encountered an error while using tools: No AIMessage found in input",
+      "timestamp": "2025-07-23T18:38:54.564121",
+      "message_id": "5d61d5de-06ea-47f5-93c8-7f9921e93154"
+    },
+    {
+      "role": "assistant",
+      "content": "I encountered an error while using tools: No AIMessage found in input",
+      "timestamp": "2025-07-23T18:38:55.284221",
+      "message_id": "488c2896-7b99-4bc3-bfaf-e55723c82ea7"
+    },
+    {
+      "role": "user",
+      "content": "i have SPY and MSFT stocks. Help me evaluate risk of my portfolio",
+      "timestamp": "2025-07-23T18:39:11.986888",
+      "message_id": "ace414dc-dbb5-4261-85c9-bbeea75d9f12"
+    },
+    {
+      "role": "assistant",
+      "content": "To evaluate the risk of your portfolio with SPY and MSFT stocks, we will follow these steps:\n1. Get the risk assessment for each stock individually.\n2. Analyze the risk of the portfolio as a whole.\n\nLet's start by retrieving the risk assessment for SPY and MSFT stocks separately using the `get_stock_info` tool.",
+      "timestamp": "2025-07-23T18:39:13.467600",
+      "message_id": "390fcf12-3e77-4b53-a3ec-eab1e67a3d6f",
+      "tool_calls": [
+        {
+          "name": "get_stock_info",
+          "args": {
+            "symbol": "SPY"
+          },
+          "id": "call_64YxYbdMZbjXnx7su1WQb5q8",
+          "type": "tool_call"
+        },
+        {
+          "name": "get_stock_info",
+          "args": {
+            "symbol": "MSFT"
+          },
+          "id": "call_ndwTg4V4N0fCFbuyVA37w7A0",
+          "type": "tool_call"
+        }
+      ]
+    },
+    {
+      "role": "assistant",
+      "content": "I encountered an error while using tools: No AIMessage found in input",
+      "timestamp": "2025-07-23T18:39:13.468960",
+      "message_id": "88253657-3763-4b86-bda3-4e96cf06e325"
+    },
+    {
+      "role": "assistant",
+      "content": "I encountered an error while using tools: No AIMessage found in input",
+      "timestamp": "2025-07-23T18:39:14.077220",
+      "message_id": "85371772-b0d1-4c2f-af4e-8f745706caae"
+    }
+  ],
+  "context": {
+    "recent_history": [
+      {
+        "role": "assistant",
+        "content": "",
+        "timestamp": "2025-07-23T18:38:47.765818",
+        "message_id": "ffd364a5-ab1a-4523-89b4-01c5708cffbb",
+        "tool_calls": [
+          {
+            "name": "get_stock_info",
+            "args": {
+              "symbol": "SPY"
+            },
+            "id": "call_cIPe4WmtVgLStyiu2dbNxcSW",
+            "type": "tool_call"
+          }
+        ]
+      },
+      {
+        "role": "assistant",
+        "content": "I encountered an error while using tools: No AIMessage found in input",
+        "timestamp": "2025-07-23T18:38:47.767200",
+        "message_id": "b76f5bbe-927e-49ae-9d34-378db4c577ea"
+      },
+      {
+        "role": "assistant",
+        "content": "Let's analyze the risk of your portfolio as a whole using the `calculate_risk` tool. I will combine the risk assessment of SPY and MSFT to provide an overall risk evaluation. Let's proceed with that.",
+        "timestamp": "2025-07-23T18:38:49.073499",
+        "message_id": "a190f04c-6902-49ca-a5b3-ea5120234be7",
+        "tool_calls": [
+          {
+            "name": "get_stock_info",
+            "args": {
+              "symbol": "SPY"
+            },
+            "id": "call_8kdwZ4xDVFYmRSTjeDJBOD1b",
+            "type": "tool_call"
+          },
+          {
+            "name": "get_stock_info",
+            "args": {
+              "symbol": "MSFT"
+            },
+            "id": "call_sWh4sZjFNHRrm3W3K3txapQs",
+            "type": "tool_call"
+          }
+        ]
+      },
+      {
+        "role": "assistant",
+        "content": "I encountered an error while using tools: No AIMessage found in input",
+        "timestamp": "2025-07-23T18:38:49.074885",
+        "message_id": "89254e5d-c3c0-49f5-a174-728dd0c8c934"
+      },
+      {
+        "role": "assistant",
+        "content": "I encountered an error while using tools: No AIMessage found in input",
+        "timestamp": "2025-07-23T18:38:49.576324",
+        "message_id": "b3d1bb14-e89e-4409-95c8-609c81b6ef43"
+      },
+      {
+        "role": "user",
+        "content": "i have SPY and MSFT stocks. Help me evaluate risk of my portfolio",
+        "timestamp": "2025-07-23T18:38:53.065611",
+        "message_id": "a49ef0e0-a4a4-4304-bc2a-312bd0dffc83"
+      },
+      {
+        "role": "assistant",
+        "content": "Understood. To evaluate the risk of your portfolio with SPY and MSFT stocks, we can follow these steps:\n1. Get the risk assessment for each stock individually.\n2. Analyze the risk of the portfolio as a whole.\n\nLet's start by getting the risk assessment for SPY and MSFT stocks individually. I will use the `get_stock_info` tool to gather this information. Let's proceed with that.",
+        "timestamp": "2025-07-23T18:38:54.562746",
+        "message_id": "c2df3797-a2ce-4027-97ca-1d518282bf44",
+        "tool_calls": [
+          {
+            "name": "get_stock_info",
+            "args": {
+              "symbol": "SPY"
+            },
+            "id": "call_BIjRTM8EUVS3uMiZit46P6I9",
+            "type": "tool_call"
+          },
+          {
+            "name": "get_stock_info",
+            "args": {
+              "symbol": "MSFT"
+            },
+            "id": "call_2wZGxiGVuY61VVdtlTMJJDQi",
+            "type": "tool_call"
+          }
+        ]
+      },
+      {
+        "role": "assistant",
+        "content": "I encountered an error while using tools: No AIMessage found in input",
+        "timestamp": "2025-07-23T18:38:54.564121",
+        "message_id": "5d61d5de-06ea-47f5-93c8-7f9921e93154"
+      },
+      {
+        "role": "assistant",
+        "content": "I encountered an error while using tools: No AIMessage found in input",
+        "timestamp": "2025-07-23T18:38:55.284221",
+        "message_id": "488c2896-7b99-4bc3-bfaf-e55723c82ea7"
+      },
+      {
+        "role": "user",
+        "content": "i have SPY and MSFT stocks. Help me evaluate risk of my portfolio",
+        "timestamp": "2025-07-23T18:39:11.986888",
+        "message_id": "ace414dc-dbb5-4261-85c9-bbeea75d9f12"
+      }
+    ]
+  },
+  "last_engagement_score": 1.0,
+  "last_updated": "2025-07-23T18:39:14.078750",
+  "message_count": 20
+}

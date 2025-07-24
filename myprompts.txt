@@ -1,0 +1,56 @@
+Help me build a framework to build and evaluate an LLM / AI Agentic based sticky chatbot for high user engagement in Python.
+I want to start with LangGraph - and iterate and evaluate various prompts and tools to help us continue to make our chatbot experience better everyday.
+We want to store our interaction with user in a file, for now, and score those interactions later.
+Let's start with a directory structure and boilerplate code to get me started.
+
+
+
+│ > I found another useful use case for promptTemplate in langGraph. It looks like that we can include "tools" into these templates. I have put together following code as an example. Can you help me use the pattern to generalize prompt and tools
+from langgraph.prebuilt import ToolNode
+from langchain_core.tools import tool
+
+@tool
+def triple((num: float) -> float:
+"""             
+param num: input number
+returns: the triple of the input     """                                                                                                          return float(num) * 
+
+prompt = PromptTemplate.from_template(template=template).partial(tools=tools, tool_names=', '.join([t.neame for t in tools])
+
+-- react.py --
+from langgraph.prebuilt import ToolNode
+from langchain_core.tools import tool
+
+@tool
+def triple((num: float) -> float:
+   """ 
+   param num: input number
+   returns: the triple of the input
+   """
+   return float(num) * 3
+
+tools = [TavilySearch(max_results=1), triple]
+
+tool_node = ToolNode(tools)
+
+
+feel free to ask any question    
+
+
+
+I like how you are thinking but I want to keep things simple and take one step at a time. I am mostly interested in    │
+│   2. Enhanced prompt template at this time.   
+
+This looks much better. Can you also include support for toolNode in the graph 
+
+
+can you create an example with "finchat_prompt" that uses tools 
+
+
+
+
+
+i want your help to expose the chat interface over the web with FastAPI  
+
+
+

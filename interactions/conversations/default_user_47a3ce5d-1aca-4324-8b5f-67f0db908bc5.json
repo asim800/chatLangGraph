@@ -1,0 +1,22 @@
+{
+  "user_id": "default_user",
+  "session_id": "47a3ce5d-1aca-4324-8b5f-67f0db908bc5",
+  "messages": [
+    {
+      "role": "user",
+      "content": "i need help with calculating interest payments",
+      "timestamp": "2025-07-16T10:14:38.013780",
+      "message_id": "e465e7cf-29bb-4c9b-a1da-7d166bbed309"
+    },
+    {
+      "role": "assistant",
+      "content": "Of course! Calculating interest payments is essential for understanding the cost of borrowing or the return on investments. The formula for calculating simple interest is:\n\nInterest = Principal x Rate x Time\n\nWhere:\n- Principal is the initial amount of money\n- Rate is the interest rate per period\n- Time is the length of time the money is borrowed or invested for\n\nFor example, if you have $10,000 invested in a savings account with an annual interest rate of 3% for 2 years, the interest earned would be:\n\nInterest = $10,000 x 0.03 x 2 = $600\n\nThis means you would earn $600 in interest over the 2-year period. \n\nIf you have a specific scenario you'd like help calculating interest for, feel free to provide the details for more personalized assistance.",
+      "timestamp": "2025-07-16T10:14:40.287702",
+      "message_id": "1d0c748a-da8f-4b71-8b4c-9f019cf5b16d"
+    }
+  ],
+  "context": {},
+  "last_engagement_score": 1.0,
+  "last_updated": "2025-07-16T10:14:40.288208",
+  "message_count": 2
+}

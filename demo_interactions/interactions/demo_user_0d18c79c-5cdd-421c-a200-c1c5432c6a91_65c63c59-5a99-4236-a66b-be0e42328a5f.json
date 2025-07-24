@@ -1,0 +1,136 @@
+{
+  "user_id": "demo_user",
+  "session_id": "0d18c79c-5cdd-421c-a200-c1c5432c6a91",
+  "messages": [
+    {
+      "role": "user",
+      "content": "i have 3 stocks SPY, AAPL and MSFT. I want you to get to go out get their info and then feed that to calculate_risk",
+      "timestamp": "2025-07-23T17:04:32.361035",
+      "message_id": "c909fa6f-b6b9-49eb-b872-a608781e53d5"
+    },
+    {
+      "role": "assistant",
+      "content": "Question: Can you provide the quantities or percentages of each of the stocks (SPY, AAPL, MSFT) in your portfolio?\nThought: We need to gather the stock information for each of the stocks (SPY, AAPL, MSFT) before calculating the portfolio risk.\nAction: Use the get_stock_info tool to get the necessary information for each stock.\nAction Input: \n- get_stock_info for symbol: \"SPY\"\n- get_stock_info for symbol: \"AAPL\"\n- get_stock_info for symbol: \"MSFT\"\nObservation: Obtain the stock information for SPY, AAPL, and MSFT.\n",
+      "timestamp": "2025-07-23T17:04:35.105359",
+      "message_id": "4cf06949-098a-47c5-9b9b-fe041f88c82a",
+      "tool_calls": [
+        {
+          "name": "get_stock_info",
+          "args": {
+            "symbol": "SPY"
+          },
+          "id": "call_5x6vt682xTW1pIk52oxckbYz",
+          "type": "tool_call"
+        },
+        {
+          "name": "get_stock_info",
+          "args": {
+            "symbol": "AAPL"
+          },
+          "id": "call_71VWzVIW2tRUQJR8rtUytw9t",
+          "type": "tool_call"
+        },
+        {
+          "name": "get_stock_info",
+          "args": {
+            "symbol": "MSFT"
+          },
+          "id": "call_HIN6qQJWKq7VEQVh7zUSn4mx",
+          "type": "tool_call"
+        }
+      ]
+    },
+    {
+      "role": "assistant",
+      "content": "I encountered an error while using tools: No AIMessage found in input",
+      "timestamp": "2025-07-23T17:04:35.106529",
+      "message_id": "328e9b4c-9702-4f20-8649-9380f9291d9b"
+    },
+    {
+      "role": "assistant",
+      "content": "",
+      "timestamp": "2025-07-23T17:04:35.961246",
+      "message_id": "b26fbd64-b88a-46d9-8b96-dc37cebe501c",
+      "tool_calls": [
+        {
+          "name": "get_stock_info",
+          "args": {
+            "symbol": "SPY"
+          },
+          "id": "call_KJh6fPuDgT5BOSGcLZxi6sMc",
+          "type": "tool_call"
+        },
+        {
+          "name": "get_stock_info",
+          "args": {
+            "symbol": "AAPL"
+          },
+          "id": "call_NXkWaLfHjuAHTBhNL9UkEufM",
+          "type": "tool_call"
+        },
+        {
+          "name": "get_stock_info",
+          "args": {
+            "symbol": "MSFT"
+          },
+          "id": "call_71NKNJQRqziko8wE6eIJ2Apj",
+          "type": "tool_call"
+        }
+      ]
+    },
+    {
+      "role": "assistant",
+      "content": "I encountered an error while using tools: No AIMessage found in input",
+      "timestamp": "2025-07-23T17:04:35.961646",
+      "message_id": "8f0151ce-c1ed-470e-95d6-2266c0cf90ae"
+    },
+    {
+      "role": "assistant",
+      "content": "",
+      "timestamp": "2025-07-23T17:04:36.669973",
+      "message_id": "1d654055-501d-4cbc-a56d-6e7a71ca2016",
+      "tool_calls": [
+        {
+          "name": "get_stock_info",
+          "args": {
+            "symbol": "SPY"
+          },
+          "id": "call_yYpt20g5xXJsANRX16ldBhkX",
+          "type": "tool_call"
+        },
+        {
+          "name": "get_stock_info",
+          "args": {
+            "symbol": "AAPL"
+          },
+          "id": "call_0SsIAw4LxGuTNo0qRoH2Jif4",
+          "type": "tool_call"
+        },
+        {
+          "name": "get_stock_info",
+          "args": {
+            "symbol": "MSFT"
+          },
+          "id": "call_bEx3OX5ubNpu5GumKZmN4IJz",
+          "type": "tool_call"
+        }
+      ]
+    },
+    {
+      "role": "assistant",
+      "content": "I encountered an error while using tools: No AIMessage found in input",
+      "timestamp": "2025-07-23T17:04:36.671500",
+      "message_id": "2fa05f5c-f676-491e-9763-c32f9afee74c"
+    },
+    {
+      "role": "assistant",
+      "content": "Question: Can you provide the quantities or percentages of each of the stocks (SPY, AAPL, MSFT) in your portfolio?\nThought: We need to gather the stock information for each of the stocks (SPY, AAPL, MSFT) before calculating the portfolio risk.\nAction: Use the get_stock_info tool to get the necessary information for each stock.\nAction Input: \n- get_stock_info for symbol: \"SPY\"\n- get_stock_info for symbol: \"AAPL\"\n- get_stock_info for symbol: \"MSFT\"\nObservation: Obtain the stock information for SPY, AAPL, and MSFT.",
+      "timestamp": "2025-07-23T17:04:38.832132",
+      "message_id": "4547846d-5c5b-4b60-9352-48bd58fce137"
+    }
+  ],
+  "engagement_score": 1.0,
+  "context": {},
+  "timestamp": "2025-07-23T17:04:38.833731",
+  "interaction_id": "65c63c59-5a99-4236-a66b-be0e42328a5f"
+}

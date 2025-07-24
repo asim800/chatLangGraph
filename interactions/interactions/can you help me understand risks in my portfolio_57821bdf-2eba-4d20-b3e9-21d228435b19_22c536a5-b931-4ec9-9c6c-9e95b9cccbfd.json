@@ -1,0 +1,22 @@
+{
+  "user_id": "can you help me understand risks in my portfolio",
+  "session_id": "57821bdf-2eba-4d20-b3e9-21d228435b19",
+  "messages": [
+    {
+      "role": "user",
+      "content": "hello",
+      "timestamp": "2025-07-17T17:04:26.795745",
+      "message_id": "941740e1-d916-4b0d-8ef5-28a78e908e58"
+    },
+    {
+      "role": "assistant",
+      "content": "Hello! How can I assist you today with your financial needs?",
+      "timestamp": "2025-07-17T17:04:28.262538",
+      "message_id": "86db53b1-e43b-42ef-8b54-5ffc688150fe"
+    }
+  ],
+  "engagement_score": 1.0,
+  "context": {},
+  "timestamp": "2025-07-17T17:04:28.263040",
+  "interaction_id": "22c536a5-b931-4ec9-9c6c-9e95b9cccbfd"
+}

@@ -1,0 +1,22 @@
+{
+  "user_id": "demo_user",
+  "session_id": "b6a85b04-2e08-4bb4-a19f-85fb2fc716f7",
+  "messages": [
+    {
+      "role": "user",
+      "content": "can you analyze my portfolio?",
+      "timestamp": "2025-07-23T11:24:22.516395",
+      "message_id": "942d8938-dd98-42e8-8920-0b9ca74994ce"
+    },
+    {
+      "role": "assistant",
+      "content": "Of course! I can help you analyze your portfolio. To start with, I'll need to gather some information about your portfolio. Could you please provide me with a list of your portfolio holdings or investments? This will help me in conducting a comprehensive analysis for you.",
+      "timestamp": "2025-07-23T11:24:24.015372",
+      "message_id": "db4341ef-58a3-4b53-855c-663a118157b8"
+    }
+  ],
+  "engagement_score": 1.0,
+  "context": {},
+  "timestamp": "2025-07-23T11:24:24.015948",
+  "interaction_id": "df13419a-3cbb-4ce1-816f-b0e557815de6"
+}

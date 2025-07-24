@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="300" height="500" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" 
+            refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#333" />
+    </marker>
+    <style>
+      .node {
+        fill: #e1f5fe;
+        stroke: #0277bd;
+        stroke-width: 2;
+        rx: 8;
+      }
+      .node-text {
+        font-family: Arial, sans-serif;
+        font-size: 12px;
+        text-anchor: middle;
+        dominant-baseline: middle;
+        fill: #01579b;
+      }
+      .edge {
+        stroke: #333;
+        stroke-width: 2;
+        marker-end: url(#arrowhead);
+      }
+      .start-node {
+        fill: #c8e6c9;
+        stroke: #2e7d32;
+      }
+      .end-node {
+        fill: #ffcdd2;
+        stroke: #c62828;
+      }
+      .title {
+        font-family: Arial, sans-serif;
+        font-size: 16px;
+        font-weight: bold;
+        text-anchor: middle;
+        fill: #333;
+      }
+    </style>
+  </defs>
+  
+  <!-- Title -->
+  <text x="150" y="25" class="title">Chatbot Agent Graph Flow</text>
+  
+  <line x1="150" y1="75" x2="150" y2="125" class="edge" />
+  <line x1="150" y1="175" x2="150" y2="225" class="edge" />
+  <line x1="150" y1="275" x2="150" y2="325" class="edge" />
+  <line x1="150" y1="375" x2="150" y2="425" class="edge" />
+  <rect x="90" y="25" width="120" height="50" class="node start-node" />
+  <text x="150" y="50" class="node-text">Process Input</text>
+  <rect x="90" y="125" width="120" height="50" class="node" />
+  <text x="150" y="150" class="node-text">Generate Response</text>
+  <rect x="90" y="225" width="120" height="50" class="node" />
+  <text x="150" y="250" class="node-text">Update Engagement</text>
+  <rect x="90" y="325" width="120" height="50" class="node" />
+  <text x="150" y="350" class="node-text">Store Interaction</text>
+  <rect x="90" y="425" width="120" height="50" class="node end-node" />
+  <text x="150" y="450" class="node-text">END</text>
+</svg>

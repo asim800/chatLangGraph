@@ -1,0 +1,22 @@
+{
+  "user_id": "default_user",
+  "session_id": "fdff8dd2-28f8-4dab-9e70-ac6f43d69b47",
+  "messages": [
+    {
+      "role": "user",
+      "content": "help",
+      "timestamp": "2025-07-15T21:30:42.119344",
+      "message_id": "357e796a-44da-4142-a022-f964a13ae15f"
+    },
+    {
+      "role": "assistant",
+      "content": "Of course! I'm here to help. What do you need assistance with today?",
+      "timestamp": "2025-07-15T21:30:43.322385",
+      "message_id": "3138b407-1d43-42a3-b7ec-2c4c7e4c7373"
+    }
+  ],
+  "engagement_score": 1.0,
+  "context": {},
+  "timestamp": "2025-07-15T21:30:43.323097",
+  "interaction_id": "e1b98be0-bc04-4865-882a-cde6e601f56f"
+}

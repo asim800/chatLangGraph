@@ -1,0 +1,13 @@
+{
+  "model_name": "gpt-3.5-turbo",
+  "temperature": 0.7,
+  "system_prompt": "finchat_prompt",
+  "storage_path": "./demo_interactions",
+  "context_window": 10,
+  "max_conversation_length": 50,
+  "session_timeout_minutes": 30,
+  "enable_evaluation": true,
+  "engagement_tracking": true,
+  "min_engagement_score": 0.3,
+  "available_tools": ["calculate_risk", "get_stock_info", "portfolio_analyzer"]
+}

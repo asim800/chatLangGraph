@@ -1,0 +1,99 @@
+{
+  "user_id": "demo_user",
+  "session_id": "b6a85b04-2e08-4bb4-a19f-85fb2fc716f7",
+  "messages": [
+    {
+      "role": "user",
+      "content": "can you analyze my portfolio?",
+      "timestamp": "2025-07-23T11:24:22.516395",
+      "message_id": "942d8938-dd98-42e8-8920-0b9ca74994ce"
+    },
+    {
+      "role": "assistant",
+      "content": "Of course! I can help you analyze your portfolio. To start with, I'll need to gather some information about your portfolio. Could you please provide me with a list of your portfolio holdings or investments? This will help me in conducting a comprehensive analysis for you.",
+      "timestamp": "2025-07-23T11:24:24.015372",
+      "message_id": "db4341ef-58a3-4b53-855c-663a118157b8"
+    },
+    {
+      "role": "user",
+      "content": "yeah, i have 10 stocks of SPY and 15 stocks of NVDA",
+      "timestamp": "2025-07-23T11:25:09.581291",
+      "message_id": "c0983972-6bad-4b49-9fc4-fc5a26ad257f"
+    },
+    {
+      "role": "assistant",
+      "content": "",
+      "timestamp": "2025-07-23T11:25:10.882556",
+      "message_id": "263652ce-b29d-4a1c-99c6-674226afebf5",
+      "tool_calls": [
+        {
+          "name": "portfolio_analyzer",
+          "args": {
+            "holdings": "SPY:10,NVDA:15"
+          },
+          "id": "call_Eacht4IheuBgBo9DVqOVIZbo",
+          "type": "tool_call"
+        }
+      ]
+    },
+    {
+      "role": "assistant",
+      "content": "I encountered an error while using tools: No AIMessage found in input",
+      "timestamp": "2025-07-23T11:25:10.882923",
+      "message_id": "3d038bc7-5217-4172-aba8-ea25d621d343"
+    },
+    {
+      "role": "assistant",
+      "content": "",
+      "timestamp": "2025-07-23T11:25:12.428864",
+      "message_id": "3f2f5871-3c4c-4e3b-a222-c0bac8a35946",
+      "tool_calls": [
+        {
+          "name": "portfolio_analyzer",
+          "args": {
+            "holdings": "SPY:10,NVDA:15"
+          },
+          "id": "call_U2nc1BNyKLM5Miv4JglX7XQA",
+          "type": "tool_call"
+        }
+      ]
+    },
+    {
+      "role": "assistant",
+      "content": "I encountered an error while using tools: No AIMessage found in input",
+      "timestamp": "2025-07-23T11:25:12.429582",
+      "message_id": "18cad711-e706-4d9a-b58e-a2755f5a99da"
+    },
+    {
+      "role": "assistant",
+      "content": "I encountered an error while using tools: No AIMessage found in input",
+      "timestamp": "2025-07-23T11:25:13.277894",
+      "message_id": "6eb95009-a2c5-4786-9cec-f36a0720b50c"
+    }
+  ],
+  "context": {
+    "recent_history": [
+      {
+        "role": "user",
+        "content": "can you analyze my portfolio?",
+        "timestamp": "2025-07-23T11:24:22.516395",
+        "message_id": "942d8938-dd98-42e8-8920-0b9ca74994ce"
+      },
+      {
+        "role": "assistant",
+        "content": "Of course! I can help you analyze your portfolio. To start with, I'll need to gather some information about your portfolio. Could you please provide me with a list of your portfolio holdings or investments? This will help me in conducting a comprehensive analysis for you.",
+        "timestamp": "2025-07-23T11:24:24.015372",
+        "message_id": "db4341ef-58a3-4b53-855c-663a118157b8"
+      },
+      {
+        "role": "user",
+        "content": "yeah, i have 10 stocks of SPY and 15 stocks of NVDA",
+        "timestamp": "2025-07-23T11:25:09.581291",
+        "message_id": "c0983972-6bad-4b49-9fc4-fc5a26ad257f"
+      }
+    ]
+  },
+  "last_engagement_score": 1.0,
+  "last_updated": "2025-07-23T11:25:13.279531",
+  "message_count": 8
+}

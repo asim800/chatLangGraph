@@ -1,0 +1,22 @@
+{
+  "user_id": "default_user",
+  "session_id": "ab8e86c4-83f4-4841-9580-c31dc79edfa8",
+  "messages": [
+    {
+      "role": "user",
+      "content": "help me calculate risk of my portfolio",
+      "timestamp": "2025-07-23T17:21:31.956994",
+      "message_id": "fce4d004-da31-412f-9cf6-73f0b84e685c"
+    },
+    {
+      "role": "assistant",
+      "content": "Sure, I'd be happy to help you calculate the risk of your portfolio. To do this, we typically use a metric called standard deviation, which measures the volatility of the portfolio's returns. Do you have the historical returns of your portfolio handy, or would you like to provide me with some information so we can estimate it together?",
+      "timestamp": "2025-07-23T17:21:32.907282",
+      "message_id": "8a77fbd3-ac70-4397-b666-b0bbc39572b4"
+    }
+  ],
+  "engagement_score": 1.0,
+  "context": {},
+  "timestamp": "2025-07-23T17:21:32.909112",
+  "interaction_id": "961b1bfb-022e-4694-a0c3-ca4130e21c53"
+}

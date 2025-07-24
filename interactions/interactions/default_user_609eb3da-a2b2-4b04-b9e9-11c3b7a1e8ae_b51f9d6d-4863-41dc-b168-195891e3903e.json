@@ -1,0 +1,103 @@
+{
+  "user_id": "default_user",
+  "session_id": "609eb3da-a2b2-4b04-b9e9-11c3b7a1e8ae",
+  "messages": [
+    {
+      "role": "user",
+      "content": "i want to play",
+      "timestamp": "2025-07-16T06:01:06.758934",
+      "message_id": "e864a958-4ada-4ac8-9e03-544870508011"
+    },
+    {
+      "role": "assistant",
+      "content": "That's great to hear! What kind of game are you in the mood for? Are you thinking of something like a video game, a board game, or maybe something more active like a sport or outdoor game? Let me know so we can find the perfect game for you to play!",
+      "timestamp": "2025-07-16T06:01:08.044010",
+      "message_id": "716f55e1-0248-45b5-ba01-3937cb676419"
+    },
+    {
+      "role": "user",
+      "content": "history",
+      "timestamp": "2025-07-16T06:01:10.775452",
+      "message_id": "5b96c5da-b015-47fd-8f90-0949b230cb31"
+    },
+    {
+      "role": "assistant",
+      "content": "Ah, history can be a fascinating subject! Are you interested in playing a game related to history, like a historical strategy game or a trivia game focused on historical events? It can be a fun and educational way to engage with the past. What aspect of history interests you the most?",
+      "timestamp": "2025-07-16T06:01:12.347832",
+      "message_id": "87784bce-373b-4488-85b0-cc87a82a850c"
+    },
+    {
+      "role": "user",
+      "content": "history all",
+      "timestamp": "2025-07-16T06:01:24.751811",
+      "message_id": "e499ca9a-67ef-41ac-8421-a7ad7bb4ae45"
+    },
+    {
+      "role": "assistant",
+      "content": "That's a wide and diverse interest! Exploring all aspects of history can lead to discovering so many fascinating stories and events. If you're up for it, we could dive into a historical trivia game to test your knowledge across different time periods and civilizations. How does that sound to you?",
+      "timestamp": "2025-07-16T06:01:26.191367",
+      "message_id": "a9bb44ed-cd4c-42df-bc26-0bd07ef0c526"
+    },
+    {
+      "role": "user",
+      "content": "qit",
+      "timestamp": "2025-07-16T06:13:04.352888",
+      "message_id": "519d0f8e-d811-4105-8c74-64d773df40e7"
+    },
+    {
+      "role": "assistant",
+      "content": "\"QIT\" sounds like a fun game! If you're ready, I can start by asking you a history-related trivia question. Are you all set to test your knowledge? Let me know when you're ready to begin!",
+      "timestamp": "2025-07-16T06:13:05.420690",
+      "message_id": "82da3fe8-e8dd-4bc9-aef3-b8b734401058"
+    }
+  ],
+  "engagement_score": 1.0,
+  "context": {
+    "recent_history": [
+      {
+        "role": "user",
+        "content": "i want to play",
+        "timestamp": "2025-07-16T06:01:06.758934",
+        "message_id": "e864a958-4ada-4ac8-9e03-544870508011"
+      },
+      {
+        "role": "assistant",
+        "content": "That's great to hear! What kind of game are you in the mood for? Are you thinking of something like a video game, a board game, or maybe something more active like a sport or outdoor game? Let me know so we can find the perfect game for you to play!",
+        "timestamp": "2025-07-16T06:01:08.044010",
+        "message_id": "716f55e1-0248-45b5-ba01-3937cb676419"
+      },
+      {
+        "role": "user",
+        "content": "history",
+        "timestamp": "2025-07-16T06:01:10.775452",
+        "message_id": "5b96c5da-b015-47fd-8f90-0949b230cb31"
+      },
+      {
+        "role": "assistant",
+        "content": "Ah, history can be a fascinating subject! Are you interested in playing a game related to history, like a historical strategy game or a trivia game focused on historical events? It can be a fun and educational way to engage with the past. What aspect of history interests you the most?",
+        "timestamp": "2025-07-16T06:01:12.347832",
+        "message_id": "87784bce-373b-4488-85b0-cc87a82a850c"
+      },
+      {
+        "role": "user",
+        "content": "history all",
+        "timestamp": "2025-07-16T06:01:24.751811",
+        "message_id": "e499ca9a-67ef-41ac-8421-a7ad7bb4ae45"
+      },
+      {
+        "role": "assistant",
+        "content": "That's a wide and diverse interest! Exploring all aspects of history can lead to discovering so many fascinating stories and events. If you're up for it, we could dive into a historical trivia game to test your knowledge across different time periods and civilizations. How does that sound to you?",
+        "timestamp": "2025-07-16T06:01:26.191367",
+        "message_id": "a9bb44ed-cd4c-42df-bc26-0bd07ef0c526"
+      },
+      {
+        "role": "user",
+        "content": "qit",
+        "timestamp": "2025-07-16T06:13:04.352888",
+        "message_id": "519d0f8e-d811-4105-8c74-64d773df40e7"
+      }
+    ]
+  },
+  "timestamp": "2025-07-16T06:13:05.421406",
+  "interaction_id": "b51f9d6d-4863-41dc-b168-195891e3903e"
+}

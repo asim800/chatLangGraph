@@ -1,0 +1,22 @@
+{
+  "user_id": "\u001b[A\u001b[B",
+  "session_id": "ff4635bf-3582-4f33-bcd1-87bb36b21244",
+  "messages": [
+    {
+      "role": "user",
+      "content": "quti",
+      "timestamp": "2025-07-21T07:07:32.441931",
+      "message_id": "39644db7-de1c-452c-9557-3c1a58c90bfe"
+    },
+    {
+      "role": "assistant",
+      "content": "I'm sorry, but I'm not sure what you mean by \"quti.\" Could you please provide more context or clarify your question so I can better assist you?",
+      "timestamp": "2025-07-21T07:07:33.755132",
+      "message_id": "9f35c803-7b8a-4e43-90ca-db9a02608c9f"
+    }
+  ],
+  "context": {},
+  "last_engagement_score": 1.0,
+  "last_updated": "2025-07-21T07:07:33.755676",
+  "message_count": 2
+}
