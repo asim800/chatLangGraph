@@ -341,7 +341,7 @@ async def get_chat_ui():
             </div>
             <div class="chat-container" id="chatContainer">
                 <div class="message bot-message">
-                    <strong>Bot:</strong> Hello! I'm your financial assistant. Select "React Pattern" from the dropdown to see my thinking process step by step. How can I help you today?
+                    <strong>Bot:</strong> Hello! I'm your financial assistant. I use a thinking process that shows Question → Thought → Action → Observation → Final Answer. How can I help you today?
                 </div>
             </div>
             <div class="loading" id="loading">
@@ -540,6 +540,8 @@ async def get_chat_ui():
                     let welcomeMessage = '';
                     if (selectedPrompt === 'react_prompt') {
                         welcomeMessage = 'Switched to React Pattern mode. I will show my thinking process step by step: Question → Thought → Action → Observation → Final Answer.';
+                    } else if (selectedPrompt === 'finchat_prompt') {
+                        welcomeMessage = 'Switched to Financial Chat mode. I will show my reasoning process: Question → Thought → Action → Observation → Final Answer. How can I help you optimize your portfolio?';
                     } else {
                         welcomeMessage = 'Switched to ' + selectedPrompt.replace('_', ' ') + ' mode. How can I help you?';
                     }
@@ -708,7 +710,7 @@ async def get_chat_ui():
                 
                 console.log(`🔍 [FRONTEND] ReAct pattern check: isReactPattern=${isReactPattern}, currentPrompt=${currentPrompt}, message contains 'Thought:'=${message.includes('Thought:')}`);
                 
-                if (isReactPattern && currentPrompt === 'react_prompt') {
+                if (isReactPattern && (currentPrompt === 'react_prompt' || currentPrompt === 'finchat_prompt')) {
                     console.log('🔍 [FRONTEND] Parsing ReAct pattern message');
                     // Parse and display React pattern steps
                     const steps = parseReactPattern(message);
