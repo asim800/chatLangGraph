@@ -1,0 +1,44 @@
+# Development files
+__pycache__/
+*.pyc
+*.pyo
+.git/
+.gitignore
+
+# Data directories
+interactions/
+demo_interactions/
+web_interactions/
+test_interactions/
+
+# Documentation and examples
+docs/
+examples/
+experiments/
+tests/
+
+# Large files
+uv.lock
+chatbot_graph.png
+chatbot_graph.svg
+
+# Config files not needed in production
+config/
+.python-version
+notes.txt
+myprompts.txt
+rendered_finchat_prompt.txt
+
+# Development scripts
+run_*.py
+test_*.py
+setup_*.py
+launch_*.py
+generate_*.py
+prompt_builder.py
+
+# Next.js integration files (not needed for FastAPI deployment)
+nextjs-integration/
+
+# Environment files
+.env*

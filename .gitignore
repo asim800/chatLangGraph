@@ -9,4 +9,14 @@ wheels/
 # Virtual environments
 .venv
 
+.env
+.env.local
+.env.development
+.env.production
+.env.test
 .env*
+!.env.example
+
+tasks.md
+
+.vercel

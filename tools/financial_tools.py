@@ -8,6 +8,7 @@ and investment recommendations.
 
 from typing import Union
 from langchain_core.tools import tool
+import random
 
 
 @tool  
