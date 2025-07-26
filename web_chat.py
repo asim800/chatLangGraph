@@ -176,7 +176,7 @@ Tool descriptions: {tools}
 @app.get("/", response_class=HTMLResponse)
 async def get_chat_ui():
     """Serve the chat UI"""
-    html_content = """
+    html_content = r"""
     <!DOCTYPE html>
     <html lang="en">
     <head>
@@ -739,8 +739,8 @@ async def get_chat_ui():
                     let formattedMessage = message
                         .replace(/```([^`]+)```/g, '<pre><code>$1</code></pre>')  // Code blocks
                         .replace(/`([^`]+)`/g, '<code>$1</code>')  // Inline code
-                        .replace(/\\\*\\\*([^*]+)\\\*\\\*/g, '<strong>$1</strong>')  // Bold
-                        .replace(/\\\*([^*]+)\\\*/g, '<em>$1</em>');  // Italic
+                        .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')  // Bold
+                        .replace(/\*([^*]+)\*/g, '<em>$1</em>');  // Italic
                     
                     messageText.innerHTML = formattedMessage;
                     messageContent.appendChild(messageText);
