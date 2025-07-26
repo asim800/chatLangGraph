@@ -105,6 +105,9 @@ def get_or_create_chatbot(prompt_name: str = "finchat_prompt") -> ChatbotAgent:
     """Get or create a chatbot instance for the given prompt"""
     global chatbot_instances, interaction_store
     
+    print(f"🤖 get_or_create_chatbot called with: {prompt_name}")
+    print(f"🤖 Current chatbot instances: {list(chatbot_instances.keys())}")
+    
     if prompt_name not in chatbot_instances:
         # Create config for this prompt
         config = ChatbotConfig()
@@ -168,7 +171,11 @@ Tool descriptions: {tools}
             raise HTTPException(status_code=404, detail=f"Prompt '{prompt_name}' not found")
         
         # Create chatbot instance
+        print(f"🤖 Creating new chatbot instance for: {prompt_name}")
+        print(f"🤖 Config system_prompt preview: {config.system_prompt[:100] if config.system_prompt else 'None'}...")
         chatbot_instances[prompt_name] = ChatbotAgent(config, interaction_store)
+    else:
+        print(f"🤖 Reusing existing chatbot instance for: {prompt_name}")
     
     return chatbot_instances[prompt_name]
 
@@ -361,6 +368,12 @@ async def get_chat_ui():
             <div class="session-info">
                 <span>Session: <span id="sessionId">Starting new session...</span></span>
                 <span style="margin-left: 20px;">Prompt: <span id="currentPrompt">finchat_prompt</span></span>
+                <button onclick="toggleDebugPanel()" style="margin-left: 20px; padding: 2px 8px; font-size: 12px;">🔍 Debug</button>
+            </div>
+            <div id="debugPanel" style="display: none; background: #f0f0f0; padding: 10px; margin: 10px 0; border-radius: 5px; font-family: monospace; font-size: 12px;">
+                <strong>Debug Info:</strong>
+                <div id="debugInfo">Click debug button to load info...</div>
+                <button onclick="loadDebugInfo()" style="margin-top: 5px;">Refresh Debug Info</button>
             </div>
             <div class="chat-container" id="chatContainer">
                 <div class="message bot-message">
@@ -391,8 +404,11 @@ async def get_chat_ui():
 
             async function loadAvailablePrompts() {
                 try {
+                    console.log('🔍 [FRONTEND] Loading available prompts...');
                     const response = await fetch('/api/fastapi/api/prompts');
                     const prompts = await response.json();
+                    console.log('🔍 [FRONTEND] Available prompts:', prompts);
+                    
                     const select = document.getElementById('promptSelect');
                     select.innerHTML = '';
                     
@@ -402,6 +418,8 @@ async def get_chat_ui():
                         option.textContent = prompt.replace(/_/g, ' ').replace(/\\b\\w/g, l => l.toUpperCase());
                         select.appendChild(option);
                     });
+                    
+                    console.log('🔍 [FRONTEND] Prompt dropdown populated');
                     
                     // Set default to finchat_prompt if available
                     if (prompts.includes('finchat_prompt')) {
@@ -488,10 +506,48 @@ async def get_chat_ui():
                 textarea.style.height = Math.min(textarea.scrollHeight, 120) + 'px';
             }
 
+            // Debug panel functions
+            function toggleDebugPanel() {
+                const panel = document.getElementById('debugPanel');
+                if (panel.style.display === 'none') {
+                    panel.style.display = 'block';
+                    loadDebugInfo();
+                } else {
+                    panel.style.display = 'none';
+                }
+            }
+
+            async function loadDebugInfo() {
+                try {
+                    const response = await fetch('/api/fastapi/api/debug/chatbot-instances');
+                    const debugData = await response.json();
+                    
+                    const debugInfo = document.getElementById('debugInfo');
+                    debugInfo.innerHTML = `
+                        <div><strong>Current Prompt:</strong> ${currentPrompt}</div>
+                        <div><strong>Current Session:</strong> ${currentSessionId || 'None'}</div>
+                        <div><strong>Active Chatbot Instances:</strong> ${debugData.active_instances.join(', ') || 'None'}</div>
+                        <div><strong>Instance Count:</strong> ${debugData.instance_count}</div>
+                        <hr style="margin: 5px 0;">
+                        <div><strong>Instance Details:</strong></div>
+                        ${Object.entries(debugData.instances_detail || {}).map(([name, details]) => 
+                            `<div style="margin-left: 10px;">
+                                <strong>${name}:</strong><br>
+                                - Tools: ${details.tools_count || 0}<br>
+                                - Prompt: ${(details.system_prompt_preview || 'None').substring(0, 100)}...
+                            </div>`
+                        ).join('')}
+                    `;
+                } catch (error) {
+                    document.getElementById('debugInfo').innerHTML = `Error loading debug info: ${error}`;
+                }
+            }
+
             // Add event listener for auto-resize
             document.addEventListener('DOMContentLoaded', function() {
                 const textarea = document.getElementById('messageInput');
                 textarea.addEventListener('input', autoResizeTextarea);
+                loadAvailablePrompts();
             });
 
             async function sendMessage() {
@@ -504,6 +560,7 @@ async def get_chat_ui():
 
                 // Check if prompt changed
                 if (selectedPrompt !== currentPrompt) {
+                    console.log(`🔍 [FRONTEND] Prompt changed: ${currentPrompt} → ${selectedPrompt}`);
                     currentPrompt = selectedPrompt;
                     currentSessionId = null; // Start new session with new prompt
                     document.getElementById('currentPrompt').textContent = selectedPrompt;
@@ -549,17 +606,21 @@ async def get_chat_ui():
                 document.getElementById('loading').style.display = 'block';
                 document.getElementById('sendButton').disabled = true;
 
+                const requestPayload = {
+                    message: message,
+                    session_id: currentSessionId,
+                    prompt_name: currentPrompt
+                };
+                console.log('🔍 [FRONTEND] Request payload:', requestPayload);
+                console.log(`🔍 [FRONTEND] Sending to: /api/fastapi/api/chat`);
+
                 try {
                     const response = await fetch('/api/fastapi/api/chat', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
                         },
-                        body: JSON.stringify({
-                            message: message,
-                            session_id: currentSessionId,
-                            prompt_name: currentPrompt
-                        })
+                        body: JSON.stringify(requestPayload)
                     });
 
                     if (!response.ok) {
@@ -567,11 +628,13 @@ async def get_chat_ui():
                     }
 
                     const data = await response.json();
+                    console.log('🔍 [FRONTEND] Response data:', data);
                     
                     // Update session ID if this is a new session
                     if (!currentSessionId) {
                         currentSessionId = data.session_id;
                         document.getElementById('sessionId').textContent = currentSessionId.substring(0, 8) + '...';
+                        console.log(`🔍 [FRONTEND] Session updated: ${currentSessionId}`);
                         
                         // Load previous messages for history navigation (but don't display them)
                         loadMessageHistoryForNavigation();
@@ -818,7 +881,12 @@ async def chat_endpoint(message: ChatMessage, background_tasks: BackgroundTasks)
     try:
         # Get or create chatbot for the specified prompt
         prompt_name = message.prompt_name or "finchat_prompt"
+        print(f"🔍 [DIRECT] Received prompt_name: {message.prompt_name} -> Using: {prompt_name}")
+        print(f"🔍 [DIRECT] Message: {message.message[:50]}...")
+        print(f"🔍 [DIRECT] Session: {message.session_id}, User: {message.user_id}")
+        
         chatbot = get_or_create_chatbot(prompt_name)
+        print(f"🔍 [DIRECT] Chatbot instance created/retrieved for: {prompt_name}")
         
         # Process the chat message using invoke() method (LangGraph convention)
         response = chatbot.invoke({
@@ -908,7 +976,14 @@ async def delete_session(session_id: str, user_id: str = "web_user"):
 @app.post("/api/fastapi/api/chat", response_model=ChatResponse)
 async def chat_endpoint_proxy(message: ChatMessage, background_tasks: BackgroundTasks):
     """Main chat endpoint (Next.js proxy version)"""
-    return await chat_endpoint(message, background_tasks)
+    print(f"🔍 [PROXY] Received prompt_name: {message.prompt_name}")
+    print(f"🔍 [PROXY] Message: {message.message[:50]}...")
+    print(f"🔍 [PROXY] Session: {message.session_id}, User: {message.user_id}")
+    print(f"🔍 [PROXY] Forwarding to direct endpoint...")
+    
+    result = await chat_endpoint(message, background_tasks)
+    print(f"🔍 [PROXY] Response generated successfully")
+    return result
 
 @app.get("/api/fastapi/api/prompts")
 async def get_prompts_proxy():
@@ -929,6 +1004,42 @@ async def get_chat_stats_proxy():
 async def delete_session_proxy(session_id: str, user_id: str = "web_user"):
     """Delete a chat session (Next.js proxy version)"""
     return await delete_session(session_id, user_id)
+
+
+# Debug endpoints for troubleshooting prompt issues
+@app.get("/api/debug/chatbot-instances")
+async def get_debug_chatbot_instances():
+    """Debug endpoint to show active chatbot configurations"""
+    global chatbot_instances
+    
+    debug_info = {
+        "active_instances": list(chatbot_instances.keys()),
+        "instance_count": len(chatbot_instances),
+        "instances_detail": {}
+    }
+    
+    for prompt_name, chatbot in chatbot_instances.items():
+        try:
+            system_prompt_preview = chatbot.config.system_prompt[:200] if chatbot.config.system_prompt else "None"
+            tools_count = len(chatbot.config.tools) if chatbot.config.tools else 0
+            
+            debug_info["instances_detail"][prompt_name] = {
+                "system_prompt_preview": system_prompt_preview + "..." if len(system_prompt_preview) == 200 else system_prompt_preview,
+                "tools_count": tools_count,
+                "has_tools": tools_count > 0,
+                "config_type": type(chatbot.config).__name__
+            }
+        except Exception as e:
+            debug_info["instances_detail"][prompt_name] = {
+                "error": str(e)
+            }
+    
+    return debug_info
+
+@app.get("/api/fastapi/api/debug/chatbot-instances")
+async def get_debug_chatbot_instances_proxy():
+    """Debug endpoint (proxy version)"""
+    return await get_debug_chatbot_instances()
 
 
 def run_web_server(host: str = "0.0.0.0", port: int = 8000, debug: bool = False):
