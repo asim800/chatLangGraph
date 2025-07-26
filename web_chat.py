@@ -391,7 +391,7 @@ async def get_chat_ui():
 
             async function loadAvailablePrompts() {
                 try {
-                    const response = await fetch('/api/fastapi/api/prompts');
+                    const response = await fetch('/api/prompts');
                     const prompts = await response.json();
                     const select = document.getElementById('promptSelect');
                     select.innerHTML = '';
@@ -550,7 +550,7 @@ async def get_chat_ui():
                 document.getElementById('sendButton').disabled = true;
 
                 try {
-                    const response = await fetch('/api/fastapi/api/chat', {
+                    const response = await fetch('/api/chat', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
@@ -770,7 +770,7 @@ async def get_chat_ui():
                 if (!currentSessionId) return;
                 
                 try {
-                    const response = await fetch(`/api/fastapi/api/sessions/${currentSessionId}/history?user_id=web_user&limit=20`);
+                    const response = await fetch(`/api/sessions/${currentSessionId}/history?user_id=web_user&limit=20`);
                     if (response.ok) {
                         const historyData = await response.json();
                         
@@ -812,7 +812,7 @@ async def get_chat_ui():
     return HTMLResponse(content=html_content)
 
 
-@app.post("/api/fastapi/api/chat", response_model=ChatResponse)
+@app.post("/api/chat", response_model=ChatResponse)
 async def chat_endpoint(message: ChatMessage, background_tasks: BackgroundTasks):
     """Main chat endpoint"""
     try:
@@ -838,7 +838,7 @@ async def chat_endpoint(message: ChatMessage, background_tasks: BackgroundTasks)
         raise HTTPException(status_code=500, detail=f"Chat error: {str(e)}")
 
 
-@app.get("/api/fastapi/api/prompts")
+@app.get("/api/prompts")
 async def get_available_prompts():
     """Get list of available prompts"""
     try:
@@ -848,7 +848,7 @@ async def get_available_prompts():
         raise HTTPException(status_code=500, detail=f"Error loading prompts: {str(e)}")
 
 
-@app.get("/api/fastapi/api/sessions/{session_id}/history")
+@app.get("/api/sessions/{session_id}/history")
 async def get_chat_history(session_id: str, user_id: str = "web_user", limit: int = 50):
     """Get chat history for a session"""
     try:
@@ -883,7 +883,7 @@ async def get_chat_history(session_id: str, user_id: str = "web_user", limit: in
         raise HTTPException(status_code=500, detail=f"Error retrieving chat history: {str(e)}")
 
 
-@app.get("/api/fastapi/api/stats")
+@app.get("/api/stats")
 async def get_chat_statistics():
     """Get chat engagement statistics"""
     try:
@@ -894,7 +894,7 @@ async def get_chat_statistics():
         raise HTTPException(status_code=500, detail=f"Error retrieving statistics: {str(e)}")
 
 
-@app.delete("/api/fastapi/api/sessions/{session_id}")
+@app.delete("/api/sessions/{session_id}")
 async def delete_session(session_id: str, user_id: str = "web_user"):
     """Delete a chat session"""
     try:
