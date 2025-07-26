@@ -610,7 +610,7 @@ async def get_chat_ui():
                         // Look ahead for numbered or bulleted items
                         for (let j = i + 1; j < lines.length; j++) {
                             const nextLine = lines[j].trim();
-                            if (nextLine.match(/^\d+\./) || nextLine.match(/^[-*]/) || nextLine.match(/^\w+:/)) {
+                            if (nextLine.match(/^\\d+\./) || nextLine.match(/^[-*]/) || nextLine.match(/^\\w+:/)) {
                                 actionInput += '\\n' + nextLine;
                                 i = j; // Skip these lines in main loop
                             } else if (nextLine.startsWith('Observation:') || nextLine.startsWith('Thought:') || nextLine.startsWith('Action:') || nextLine.startsWith('Final Answer:')) {

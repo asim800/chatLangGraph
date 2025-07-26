@@ -22,8 +22,10 @@ uv.lock
 chatbot_graph.png
 chatbot_graph.svg
 
-# Config files not needed in production
+# Config files not needed in production  
 config/
+# But we need chatbot_framework/config for the deployment
+!chatbot_framework/config/
 .python-version
 notes.txt
 myprompts.txt
