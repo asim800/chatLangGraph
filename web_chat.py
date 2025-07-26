@@ -1007,7 +1007,7 @@ async def get_debug_chatbot_instances():
                 "temperature": getattr(chatbot.config, 'temperature', 'Unknown'),
                 "max_tokens": getattr(chatbot.config, 'max_tokens', 'Unknown'),
                 "openai_api_key_set": bool(getattr(chatbot.config, 'openai_api_key', None)),
-                "tool_names": [tool.__name__ if hasattr(tool, '__name__') else str(tool) for tool in (chatbot.config.tools or [])]
+                "tool_names": [getattr(tool, 'name', str(tool)) for tool in (chatbot.config.tools or [])]
             }
         except Exception as e:
             debug_info["instances_detail"][prompt_name] = {
