@@ -32,6 +32,28 @@ Fix Vercel deployment issues for FastAPI chat engine with LangGraph framework an
 - [x] **Test regex patterns** - Created validation script to ensure JavaScript regex works correctly
 - [x] **Update project documentation** - This tasks.md file for progress tracking
 
+### Dual Endpoint Implementation
+
+1. **Original Endpoints (Direct FastAPI Access)**
+   - `POST /api/chat` - Main chat endpoint
+   - `GET /api/prompts` - Available prompts
+   - `GET /api/sessions/{session_id}/history` - Chat history
+   - `GET /api/stats` - Chat statistics  
+   - `DELETE /api/sessions/{session_id}` - Delete session
+
+2. **Proxy Endpoints (Next.js Integration)**
+   - `POST /api/fastapi/api/chat` - Proxies to chat_endpoint()
+   - `GET /api/fastapi/api/prompts` - Proxies to get_available_prompts()
+   - `GET /api/fastapi/api/sessions/{session_id}/history` - Proxies to get_chat_history()
+   - `GET /api/fastapi/api/stats` - Proxies to get_chat_statistics()
+   - `DELETE /api/fastapi/api/sessions/{session_id}` - Proxies to delete_session()
+
+3. **Proxy Flow Architecture**
+   - Next.js receives: `https://www.mystocks.ai/api/fastapi/api/prompts`
+   - Strips prefix: `/api/fastapi/`
+   - Forwards to FastAPI: `https://fastapi-chat-langgraph.vercel.app/api/prompts`
+   - FastAPI proxy endpoint calls original function
+
 ## Implementation Details
 
 ### Deployment Fixes Applied
@@ -71,8 +93,16 @@ Fix Vercel deployment issues for FastAPI chat engine with LangGraph framework an
 - `169b7d8` - Fix JavaScript regex escape sequence warnings
 - `35076b8` - Add Vercel alias for consistent FastAPI URL
 
+### Phase 4: Dual Endpoint Support ✅ (Latest Update)
+**Rationale:** Next.js proxy integration requires both original FastAPI endpoints and proxy-compatible endpoints with different paths.
+
+- [x] **Add duplicate proxy endpoints** - Created `/api/fastapi/api/*` versions that proxy to original functions
+- [x] **Update HTML frontend** - Modified JavaScript to use proxy-compatible endpoints
+- [x] **Maintain backward compatibility** - Original `/api/*` endpoints still available for direct access
+- [x] **Test compilation** - Verified all syntax and function references are correct
+
 ## Current Status
-✅ **COMPLETED** - All deployment issues resolved and URL consistency implemented
+✅ **COMPLETED** - All deployment issues resolved, URL consistency implemented, and dual endpoint support added
 
 ## Next Steps for Integration
 1. **Set Environment Variables in Vercel Dashboard**

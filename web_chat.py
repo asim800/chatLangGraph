@@ -391,7 +391,7 @@ async def get_chat_ui():
 
             async function loadAvailablePrompts() {
                 try {
-                    const response = await fetch('/api/prompts');
+                    const response = await fetch('/api/fastapi/api/prompts');
                     const prompts = await response.json();
                     const select = document.getElementById('promptSelect');
                     select.innerHTML = '';
@@ -550,7 +550,7 @@ async def get_chat_ui():
                 document.getElementById('sendButton').disabled = true;
 
                 try {
-                    const response = await fetch('/api/chat', {
+                    const response = await fetch('/api/fastapi/api/chat', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
@@ -770,7 +770,7 @@ async def get_chat_ui():
                 if (!currentSessionId) return;
                 
                 try {
-                    const response = await fetch(`/api/sessions/${currentSessionId}/history?user_id=web_user&limit=20`);
+                    const response = await fetch(`/api/fastapi/api/sessions/${currentSessionId}/history?user_id=web_user&limit=20`);
                     if (response.ok) {
                         const historyData = await response.json();
                         
@@ -902,6 +902,33 @@ async def delete_session(session_id: str, user_id: str = "web_user"):
         return {"message": f"Session {session_id} deletion requested"}
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error deleting session: {str(e)}")
+
+
+# Duplicate endpoints with /api/fastapi/api/ prefix for Next.js proxy integration
+@app.post("/api/fastapi/api/chat", response_model=ChatResponse)
+async def chat_endpoint_proxy(message: ChatMessage, background_tasks: BackgroundTasks):
+    """Main chat endpoint (Next.js proxy version)"""
+    return await chat_endpoint(message, background_tasks)
+
+@app.get("/api/fastapi/api/prompts")
+async def get_prompts_proxy():
+    """Get available prompts (Next.js proxy version)"""
+    return await get_available_prompts()
+
+@app.get("/api/fastapi/api/sessions/{session_id}/history")
+async def get_session_history_proxy(session_id: str, user_id: str = "web_user", limit: int = 20):
+    """Get chat history for a session (Next.js proxy version)"""
+    return await get_chat_history(session_id, user_id, limit)
+
+@app.get("/api/fastapi/api/stats")
+async def get_chat_stats_proxy():
+    """Get chat statistics (Next.js proxy version)"""
+    return await get_chat_statistics()
+
+@app.delete("/api/fastapi/api/sessions/{session_id}")
+async def delete_session_proxy(session_id: str, user_id: str = "web_user"):
+    """Delete a chat session (Next.js proxy version)"""
+    return await delete_session(session_id, user_id)
 
 
 def run_web_server(host: str = "0.0.0.0", port: int = 8000, debug: bool = False):
