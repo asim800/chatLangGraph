@@ -7,5 +7,6 @@
   ],
   "env": {
     "PYTHONPATH": "."
-  }
+  },
+  "alias": ["fastapi-chat-langgraph.vercel.app"]
 }

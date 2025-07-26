@@ -1,0 +1,36 @@
+name: Update Next.js Environment on Deployment
+
+on:
+  deployment_status:
+    types: [success]
+
+jobs:
+  update-nextjs-env:
+    if: github.event.deployment.environment == 'production'
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Update Next.js App Environment
+        run: |
+          # Extract the deployment URL
+          DEPLOYMENT_URL="${{ github.event.deployment_status.target_url }}"
+          
+          # Update your Next.js app's environment variable
+          # This could be done via:
+          # 1. GitHub API to update repository secrets
+          # 2. Webhook to your Next.js app's deployment service
+          # 3. Direct API call to update environment variables
+          
+          echo "New FastAPI URL: $DEPLOYMENT_URL"
+          
+          # Example: Update Vercel environment variable for Next.js app
+          curl -X PATCH \
+            "https://api.vercel.com/v9/projects/YOUR_NEXTJS_PROJECT_ID/env" \
+            -H "Authorization: Bearer ${{ secrets.VERCEL_TOKEN }}" \
+            -H "Content-Type: application/json" \
+            -d '{
+              "key": "FASTAPI_CHAT_URL",
+              "value": "'$DEPLOYMENT_URL'",
+              "type": "encrypted",
+              "target": ["production"]
+            }'
