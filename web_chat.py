@@ -64,7 +64,7 @@ async def lifespan(app: FastAPI):
     global interaction_store
     
     # Initialize interaction store
-    interaction_store = InteractionStore("./web_interactions")
+    interaction_store = InteractionStore("/tmp/web_interactions")
     print("🌐 Web Chat Server initialized")
     yield
     print("🌐 Web Chat Server shutting down")
@@ -72,7 +72,7 @@ async def lifespan(app: FastAPI):
 
 # Initialize interaction store for standalone usage too
 if interaction_store is None:
-    interaction_store = InteractionStore("./web_interactions")
+    interaction_store = InteractionStore("/tmp/web_interactions")
 
 
 # Initialize FastAPI app
@@ -739,8 +739,8 @@ async def get_chat_ui():
                     let formattedMessage = message
                         .replace(/```([^`]+)```/g, '<pre><code>$1</code></pre>')  // Code blocks
                         .replace(/`([^`]+)`/g, '<code>$1</code>')  // Inline code
-                        .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')  // Bold
-                        .replace(/\*([^*]+)\*/g, '<em>$1</em>');  // Italic
+                        .replace(/\\\*\\\*([^*]+)\\\*\\\*/g, '<strong>$1</strong>')  // Bold
+                        .replace(/\\\*([^*]+)\\\*/g, '<em>$1</em>');  // Italic
                     
                     messageText.innerHTML = formattedMessage;
                     messageContent.appendChild(messageText);
