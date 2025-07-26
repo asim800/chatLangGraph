@@ -17,6 +17,6 @@ wheels/
 .env*
 !.env.example
 
-tasks.md
+# tasks.md - now tracked for project documentation
 
 .vercel
