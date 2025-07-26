@@ -123,46 +123,10 @@ def get_or_create_chatbot(prompt_name: str = "finchat_prompt") -> ChatbotAgent:
             # Check if it's a template prompt
             if is_template(prompt_name):
                 try:
-                    # Special handling for react_prompt which needs step-by-step reasoning
-                    if prompt_name == "react_prompt":
-                        # For react_prompt, disable automatic tool execution and show reasoning
-                        react_system_prompt = """
-You are a helpful financial assistant. For every question, show your complete reasoning process step by step using this EXACT format:
-
-Question: [restate the user's question clearly]
-
-Thought: [your detailed reasoning about what you need to do first. If you need information from tools, explain which tool you'll use and why]
-
-Action: [if you need to use a tool, name it here. Available tools: {tool_names}]
-Action Input: [the exact parameters you would pass to the tool]
-
-Observation: [SIMULATE what the tool would return based on the tool description. For example:
-- calculate_risk would return "Risk score: 0.6 (MODERATE risk) - Explanation..."
-- get_stock_info would return "AAPL: $180.50 (+1.2%) Rating: Strong Buy"
-- portfolio_analyzer would return "Diversification: Good, Risk: 0.45, Return: 8-12%"]
-
-[Repeat Thought/Action/Action Input/Observation for each step you need]
-
-Thought: [analyze all the information you've gathered and explain your final reasoning]
-Final Answer: [your comprehensive answer based on all the analysis]
-
-IMPORTANT: 
-- Show every step of your thinking process
-- SIMULATE tool results based on realistic financial data
-- Use multiple reasoning cycles if the question is complex
-- Be specific about what each tool would tell you
-- Build your analysis step by step
-
-Tool descriptions: {tools}
-"""
-                        config.system_prompt = react_system_prompt.format(
-                            tools='\n'.join([f"- {tool.name}: {tool.description}" for tool in config.tools]),
-                            tool_names=', '.join([tool.name for tool in config.tools])
-                        )
-                        # Disable automatic tool execution for React pattern
-                        config.tools = []
-                    else:
-                        config.system_prompt = render_template_with_tools(prompt_name, tools=config.tools)
+                    # Use the template rendering for all prompts including react_prompt
+                    config.system_prompt = render_template_with_tools(prompt_name, tools=config.tools)
+                    print(f"🤖 Rendered template prompt for: {prompt_name}")
+                    print(f"🤖 Template preview: {config.system_prompt[:200]}...")
                 except ValueError as e:
                     raise HTTPException(status_code=400, detail=f"Template error: {e}")
             else:
@@ -531,10 +495,13 @@ async def get_chat_ui():
                         <hr style="margin: 5px 0;">
                         <div><strong>Instance Details:</strong></div>
                         ${Object.entries(debugData.instances_detail || {}).map(([name, details]) => 
-                            `<div style="margin-left: 10px;">
+                            `<div style="margin-left: 10px; margin-bottom: 10px; border: 1px solid #ddd; padding: 5px; border-radius: 3px;">
                                 <strong>${name}:</strong><br>
-                                - Tools: ${details.tools_count || 0}<br>
-                                - Prompt: ${(details.system_prompt_preview || 'None').substring(0, 100)}...
+                                - Model: ${details.model_name || 'Unknown'}<br>
+                                - Temperature: ${details.temperature || 'Unknown'}<br>
+                                - Tools: ${details.tools_count || 0} (${(details.tool_names || []).join(', ') || 'None'})<br>
+                                - API Key Set: ${details.openai_api_key_set ? 'Yes' : 'No'}<br>
+                                - Prompt: ${(details.system_prompt_preview || 'None').substring(0, 150)}...
                             </div>`
                         ).join('')}
                     `;
@@ -739,9 +706,13 @@ async def get_chat_ui():
                 const isReactPattern = sender === 'bot' && 
                     (message.includes('Thought:') || message.includes('Action:') || message.includes('Observation:'));
                 
+                console.log(`🔍 [FRONTEND] ReAct pattern check: isReactPattern=${isReactPattern}, currentPrompt=${currentPrompt}, message contains 'Thought:'=${message.includes('Thought:')}`);
+                
                 if (isReactPattern && currentPrompt === 'react_prompt') {
+                    console.log('🔍 [FRONTEND] Parsing ReAct pattern message');
                     // Parse and display React pattern steps
                     const steps = parseReactPattern(message);
+                    console.log('🔍 [FRONTEND] Parsed ReAct steps:', steps);
                     
                     const reactContainer = document.createElement('div');
                     reactContainer.className = 'react-steps';
@@ -887,6 +858,8 @@ async def chat_endpoint(message: ChatMessage, background_tasks: BackgroundTasks)
         
         chatbot = get_or_create_chatbot(prompt_name)
         print(f"🔍 [DIRECT] Chatbot instance created/retrieved for: {prompt_name}")
+        print(f"🔍 [DIRECT] System prompt preview: {chatbot.config.system_prompt[:150]}...")
+        print(f"🔍 [DIRECT] Tools available: {len(chatbot.config.tools) if chatbot.config.tools else 0}")
         
         # Process the chat message using invoke() method (LangGraph convention)
         response = chatbot.invoke({
@@ -1027,7 +1000,12 @@ async def get_debug_chatbot_instances():
                 "system_prompt_preview": system_prompt_preview + "..." if len(system_prompt_preview) == 200 else system_prompt_preview,
                 "tools_count": tools_count,
                 "has_tools": tools_count > 0,
-                "config_type": type(chatbot.config).__name__
+                "config_type": type(chatbot.config).__name__,
+                "model_name": getattr(chatbot.config, 'model_name', 'Unknown'),
+                "temperature": getattr(chatbot.config, 'temperature', 'Unknown'),
+                "max_tokens": getattr(chatbot.config, 'max_tokens', 'Unknown'),
+                "openai_api_key_set": bool(getattr(chatbot.config, 'openai_api_key', None)),
+                "tool_names": [tool.__name__ if hasattr(tool, '__name__') else str(tool) for tool in (chatbot.config.tools or [])]
             }
         except Exception as e:
             debug_info["instances_detail"][prompt_name] = {
