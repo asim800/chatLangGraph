@@ -12,7 +12,7 @@ from contextlib import asynccontextmanager
 
 from fastapi import FastAPI, HTTPException, BackgroundTasks
 from fastapi.staticfiles import StaticFiles
-from fastapi.responses import HTMLResponse, JSONResponse
+from fastapi.responses import HTMLResponse, JSONResponse, Response
 from pydantic import BaseModel
 import uvicorn
 from dotenv import load_dotenv
@@ -172,6 +172,11 @@ Tool descriptions: {tools}
     
     return chatbot_instances[prompt_name]
 
+
+@app.get("/favicon.ico")
+async def favicon():
+    """Return 204 No Content for favicon requests"""
+    return Response(status_code=204)
 
 @app.get("/", response_class=HTMLResponse)
 async def get_chat_ui():
