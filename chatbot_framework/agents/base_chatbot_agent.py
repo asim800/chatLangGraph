@@ -11,6 +11,7 @@ from langchain.schema import HumanMessage, AIMessage, SystemMessage
 from langchain_core.messages import ToolMessage
 from datetime import datetime
 import uuid
+import re
 
 from ..storage.interaction_store import InteractionStore
 from ..config.settings import ChatbotConfig
@@ -41,8 +42,14 @@ class BaseChatbotAgent(ABC):
             api_key=config.openai_api_key
         )
         
-        if self.tools:
+        # Configure tool binding based on tool_mode setting
+        if self.tools and config.tool_mode == "function":
             self.llm = self.llm.bind_tools(self.tools)
+            print(f"🔧 Tool mode: function calling enabled")
+        elif self.tools and config.tool_mode == "text":
+            print(f"🔧 Tool mode: text-based ReAct pattern enabled")
+        else:
+            print(f"🔧 Tool mode: {config.tool_mode} (no tools available)")
         
         # Initialize tool node if tools are available
         self.tool_node = ToolNode(self.tools) if self.tools else None
@@ -124,84 +131,16 @@ class BaseChatbotAgent(ABC):
         return state
     
     def _should_call_tools(self, state: ConversationState) -> str:
-        """Determine if tools should be called based on the last message"""
+        """Determine if tools should be called (following l2.py pattern)"""
+        # Simple check: if last message has tool calls, execute them
         if state.get("tool_calls"):
             return "call_tools"
-        
-        # Check for ReAct pattern in the last assistant message
-        if state["messages"] and state["messages"][-1]["role"] == "assistant":
-            content = state["messages"][-1]["content"]
-            if "Action:" in content and "Action Input:" in content:
-                print("🔍 ReAct pattern detected - will call tools")
-                return "call_tools"
-        
         return "continue"
     
-    def _execute_react_tools(self, state: ConversationState) -> ConversationState:
-        """Execute tools based on ReAct text pattern"""
-        try:
-            content = state["messages"][-1]["content"]
-            print(f"🔍 Parsing ReAct content: {content[:200]}...")
-            
-            # Parse Action and Action Input from the text
-            action_match = re.search(r'Action:\s*([^\n]+)', content)
-            action_input_match = re.search(r'Action Input:\s*([^\n]+(?:\n(?!Observation:)[^\n]*)*)', content, re.MULTILINE)
-            
-            if not action_match or not action_input_match:
-                print("⚠️ Could not parse Action or Action Input from ReAct text")
-                return state
-            
-            action_name = action_match.group(1).strip()
-            action_input = action_input_match.group(1).strip()
-            
-            print(f"🔍 Parsed Action: {action_name}")
-            print(f"🔍 Parsed Action Input: {action_input}")
-            
-            # Find the matching tool
-            tool_to_call = None
-            for tool in self.tools:
-                if tool.name == action_name:
-                    tool_to_call = tool
-                    break
-            
-            if not tool_to_call:
-                print(f"⚠️ Tool '{action_name}' not found in available tools")
-                observation = f"Error: Tool '{action_name}' not found"
-            else:
-                # Execute the tool
-                print(f"🔧 Executing tool: {action_name} with input: {action_input}")
-                try:
-                    result = tool_to_call.invoke(action_input)
-                    observation = str(result)
-                    print(f"🔧 Tool result: {observation[:100]}...")
-                except Exception as e:
-                    observation = f"Error executing tool: {str(e)}"
-                    print(f"⚠️ Tool execution error: {e}")
-            
-            # Update the last message to include the observation
-            updated_content = content + f"\nObservation: {observation}\nThought:"
-            state["messages"][-1]["content"] = updated_content
-            
-            print(f"🔍 Updated message with observation")
-            return state
-            
-        except Exception as e:
-            print(f"⚠️ Error in ReAct tool execution: {e}")
-            return state
     
     def _call_tools(self, state: ConversationState) -> ConversationState:
-        """Execute tool calls"""
-        if not self.tool_node:
-            return state
-        
-        # Handle ReAct text pattern
-        if not state.get("tool_calls") and state["messages"] and state["messages"][-1]["role"] == "assistant":
-            content = state["messages"][-1]["content"]
-            if "Action:" in content and "Action Input:" in content:
-                return self._execute_react_tools(state)
-        
-        # Handle structured tool calls
-        if not state.get("tool_calls"):
+        """Execute tool calls using LangGraph ToolNode"""
+        if not self.tool_node or not state.get("tool_calls"):
             return state
         
         # Execute tools using ToolNode
@@ -361,7 +300,7 @@ class BaseChatbotAgent(ABC):
         # Run the graph
         final_state = self.graph.invoke(initial_state)
         
-        # Debug: Dump all messages to check for ReAct pattern
+        # Debug: Dump all messages from graph execution
         print(f"\n🔍 [GRAPH_INVOKE] Total messages in final_state: {len(final_state['messages'])}")
         for i, msg in enumerate(final_state["messages"]):
             print(f"🔍 [MESSAGE_{i}] Role: {msg.get('role', 'unknown')}")
@@ -369,21 +308,22 @@ class BaseChatbotAgent(ABC):
             print(f"🔍 [MESSAGE_{i}] Content preview: {content[:200]}...")
             if len(content) > 200:
                 print(f"🔍 [MESSAGE_{i}] Full content: {content}")
-            
-            # Check for ReAct pattern indicators
-            has_question = "Question:" in content
-            has_thought = "Thought:" in content  
-            has_action = "Action:" in content
-            has_action_input = "Action Input:" in content
-            has_observation = "Observation:" in content
-            
-            if any([has_question, has_thought, has_action, has_action_input, has_observation]):
-                print(f"🔍 [MESSAGE_{i}] ReAct pattern detected: Question={has_question}, Thought={has_thought}, Action={has_action}, ActionInput={has_action_input}, Observation={has_observation}")
         
-        # Return the AI response and metadata
+        # Concatenate all assistant messages for display (supports all agentic patterns)
+        assistant_messages = []
+        for msg in final_state["messages"]:
+            if msg.get("role") == "assistant":
+                content = msg.get("content", "").strip()
+                if content:  # Only add non-empty messages
+                    assistant_messages.append(content)
+        
+        # Join all assistant messages with newlines for clear separation
+        full_response = "\n\n".join(assistant_messages)
+        
+        # Return the concatenated AI response and metadata
         ai_response = final_state["messages"][-1]
         return {
-            "response": ai_response["content"],
+            "response": full_response if full_response else ai_response.get("content", ""),
             "session_id": session_id,
             "engagement_score": final_state["engagement_score"],
             "message_id": ai_response["message_id"]

@@ -45,6 +45,7 @@ class ChatbotConfig:
     # Tool configurations
     available_tools: List[str] = field(default_factory=list)
     tools: Optional[List[Any]] = field(default_factory=list)  # Actual tool objects
+    tool_mode: str = "function"  # "text" for ReAct pattern, "function" for structured function calling
     
     def __post_init__(self):
         # Set OpenAI API key from environment if not provided

@@ -124,7 +124,7 @@ def get_or_create_chatbot(prompt_name: str = "finchat_prompt") -> ChatbotAgent:
             if is_template(prompt_name):
                 try:
                     # Use the template rendering for all prompts including react_prompt
-                    config.system_prompt = render_template_with_tools(prompt_name, tools=config.tools)
+                    config.system_prompt = render_template_with_tools(prompt_name, tools=config.tools, input="{input}")
                     print(f"🤖 Rendered template prompt for: {prompt_name}")
                     print(f"🤖 Template preview: {config.system_prompt[:200]}...")
                 except ValueError as e:

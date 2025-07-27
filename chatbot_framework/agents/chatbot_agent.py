@@ -31,7 +31,7 @@ class ChatbotAgent(BaseChatbotAgent):
         # Add edges
         graph.add_edge("process_input", "generate_response")
         
-        # Tool routing logic
+        # Tool routing logic (following l2.py pattern)
         if self.tools:
             graph.add_conditional_edges(
                 "generate_response",
@@ -41,6 +41,7 @@ class ChatbotAgent(BaseChatbotAgent):
                     "continue": "update_engagement"
                 }
             )
+            # Key change: tools go back to generate_response (like l2.py: action -> llm)
             graph.add_edge("call_tools", "generate_response")
         else:
             graph.add_edge("generate_response", "update_engagement")
