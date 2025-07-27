@@ -361,6 +361,25 @@ class BaseChatbotAgent(ABC):
         # Run the graph
         final_state = self.graph.invoke(initial_state)
         
+        # Debug: Dump all messages to check for ReAct pattern
+        print(f"\n🔍 [GRAPH_INVOKE] Total messages in final_state: {len(final_state['messages'])}")
+        for i, msg in enumerate(final_state["messages"]):
+            print(f"🔍 [MESSAGE_{i}] Role: {msg.get('role', 'unknown')}")
+            content = msg.get('content', '')
+            print(f"🔍 [MESSAGE_{i}] Content preview: {content[:200]}...")
+            if len(content) > 200:
+                print(f"🔍 [MESSAGE_{i}] Full content: {content}")
+            
+            # Check for ReAct pattern indicators
+            has_question = "Question:" in content
+            has_thought = "Thought:" in content  
+            has_action = "Action:" in content
+            has_action_input = "Action Input:" in content
+            has_observation = "Observation:" in content
+            
+            if any([has_question, has_thought, has_action, has_action_input, has_observation]):
+                print(f"🔍 [MESSAGE_{i}] ReAct pattern detected: Question={has_question}, Thought={has_thought}, Action={has_action}, ActionInput={has_action_input}, Observation={has_observation}")
+        
         # Return the AI response and metadata
         ai_response = final_state["messages"][-1]
         return {
